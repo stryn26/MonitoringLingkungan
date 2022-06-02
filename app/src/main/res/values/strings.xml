@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">MonitoringLingkungan</string>
+    <string name="header">Monitoring Suhu dan Kelembapan Lingkungan</string>
+</resources>

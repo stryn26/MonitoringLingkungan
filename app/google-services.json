@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "251383285535",
+    "firebase_url": "https://ardxandrmontemp-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "ardxandrmontemp",
+    "storage_bucket": "ardxandrmontemp.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:251383285535:android:36d6c3385d13d9b2eed22a",
+        "android_client_info": {
+          "package_name": "com.arifsutriyono.monitoringlingkungan"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "251383285535-7ktvdoue9bl83e4ngpqjhqgjt1p3ho65.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDtJFzbA7-lcPBQpiTC5DOKCyLYAWTlHOM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "251383285535-7ktvdoue9bl83e4ngpqjhqgjt1p3ho65.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
