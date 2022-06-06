@@ -1,3 +1,4 @@
+
 plugins {
     id 'com.android.application'
     id 'kotlin-android'
@@ -45,7 +46,7 @@ dependencies {
     implementation 'com.google.firebase:firebase-analytics-ktx'
 
     //import analitivs yang merupakan fitur firebase
-
+    implementation 'com.google.firebase:firebase-analytics-ktx'
     implementation 'com.google.firebase:firebase-database-ktx:20.0.5'
 
     //digunakan untuk meng import depedensi yang digunakan untuk melakukan authentikasi ke firebase yang akan kita gunakan
@@ -60,4 +61,8 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
 }
 
+apply plugin: 'com.android.application'
 apply plugin: 'com.google.gms.google-services'
+apply plugin: "kotlin-android"
+apply plugin: "kotlin-android-extensions"
+
