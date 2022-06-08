@@ -1,48 +1,47 @@
 package com.arifsutriyono.monitoringlingkungan
 
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+
 import android.widget.Toast
-import com.google.firebase.database.*
-import com.google.firebase.database.ktx.database
-import com.google.firebase.ktx.Firebase
-import com.arifsutriyono.monitoringlingkungan.Data
-import kotlinx.android.synthetic.main.activity_main.*
+import com.arifsutriyono.monitoringlingkungan.databinding.ActivityMainBinding
+
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
 
 
 class MainActivity : AppCompatActivity() {
-    lateinit var mdatabase: DatabaseReference
-    private var dataList = ArrayList<Data>()
 
-    private fun getData(){
-        mdatabase.addValueEventListener(object:ValueEventListener{
-            override fun onDataChange(dataSnapshot: DataSnapshot) {
-                dataList.clear()
-
-                val Data = dataSnapshot.getValue(Data::class.java)
-                dataList.add(Data!!)
-            }
-
-            override fun onCancelled(error: DatabaseError) {
-                Toast.makeText(this@MainActivity, ""+error.message, Toast.LENGTH_LONG).show()
-            }
-        })
-    }
+    private lateinit var binding :ActivityMainBinding
+    private lateinit var database :DatabaseReference
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(R.layout.activity_main)
 
-        mdatabase = FirebaseDatabase.getInstance().getReference("/DHT11/data")
-
-        resetData.setOnClickListener{
-
+        binding.refresh.setOnClickListener{
+            readData()
         }
+    }
 
-        simpan.setOnClickListener{
+    private fun readData(){
+        database = FirebaseDatabase.getInstance().getReference("DHT11")
+        database.child("data").get().addOnSuccessListener {
+            if (it.exists()){
+                val temperature = it.child("temperature").value
+                val humidity = it.child("kelembapan").value
 
+                binding.tvSuhu.text = temperature.toString()
+                binding.tvKelembapan.text = humidity.toString()
+
+            }else {
+                Toast.makeText(this,"Gagal Membaca Data",Toast.LENGTH_SHORT).show()
+            }
+        }.addOnFailureListener {
+            Toast.makeText(this,"Failed",Toast.LENGTH_SHORT).show()
         }
     }
 
 }
+
