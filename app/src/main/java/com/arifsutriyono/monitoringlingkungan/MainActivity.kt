@@ -91,5 +91,6 @@ class MainActivity : AppCompatActivity() {
         lineChart.xAxis.labelCount = 11
         lineChart.xAxis.position = XAxis.XAxisPosition.BOTTOM
     }
+
 }
 
