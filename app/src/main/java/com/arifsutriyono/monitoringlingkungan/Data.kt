@@ -5,6 +5,6 @@ import kotlinx.android.parcel.Parcelize
 
 @Parcelize
 data class Data (
-        var temperature:String ?= "",
+        var temperature:String ?= "", //interface yang digunakan untuk menyimpan data
         var kelembapan:String ?= ""
 ): Parcelable

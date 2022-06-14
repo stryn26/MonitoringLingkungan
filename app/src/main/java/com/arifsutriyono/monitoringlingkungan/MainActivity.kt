@@ -14,7 +14,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
 
-    private lateinit var binding :ActivityMainBinding
+    private lateinit var binding :ActivityMainBinding  //digunakan untuk melakukan binding ke layout xml
     private lateinit var database :DatabaseReference
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -23,7 +23,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         binding.refresh.setOnClickListener{
-            readData()
+            readData()//untuk melakukan respon ketika di klik kemudian akan melakukan read data
         }
 
         setupLineChartData()
@@ -31,28 +31,28 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun readData(){
-            database.get().addOnSuccessListener {
+            database.get().addOnSuccessListener { //dalam kode ini akan membaca data , ketika sukses dalam pembacaan maka akan di eksekusi kode selanjutnya
             if (it.exists()) {
-                val temperature = it.child("temperature").value
-                val humidity = it.child("kelembapan").value
+                val temperature = it.child("temperature").value //mengambil data temperatur dari firebase
+                val humidity = it.child("kelembapan").value //mengambil data kelembapan dari firebase
 
-                binding.tvSuhu.text = temperature.toString()
-                binding.tvKelembapan.text = humidity.toString()
+                binding.tvSuhu.text = temperature.toString() //melakukan binding ke layout kemudian merubah string yang di tampilkan menjadi nilai temperatur
+                binding.tvKelembapan.text = humidity.toString() //melakukan binding ke layout kemudian merubah string yang di tampilkan menjadi nilai kelembapan
 
-                Toast.makeText(this,"berhasil mendapatkan data", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this,"berhasil mendapatkan data", Toast.LENGTH_SHORT).show() //ketika berhasil akan menampilkan pesan di bawah ini
 
             } else {
-                Toast.makeText(this, "Gagal Membaca Data", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Gagal Membaca Data", Toast.LENGTH_SHORT).show() //ketika data tidak ada maka ini akan menampilkan pesan
             }
         }.addOnFailureListener {
-            Toast.makeText(this, "Failed", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "Failed", Toast.LENGTH_SHORT).show() //ketika fungsi gagal maka ini akan di eksekusi
         }
     }
 
-    private fun setupLineChartData(){
+    private fun setupLineChartData(){ //menampilkan data ke bentuk chart
         val yVals = ArrayList<Entry>()
 
-        yVals.add(Entry(0f, 30f, "0"))
+        yVals.add(Entry(0f, 30f, "0")) //data dummy yang digunakan untuk proses pengembangan , akan tetapi data dari firebase belum dapat digunakan karena pembacaan dan penyimpanan ke dalam csv tidak dapat dilakukan
         yVals.add(Entry(1f, 2f, "1"))
         yVals.add(Entry(2f, 4f, "2"))
         yVals.add(Entry(3f, 6f, "3"))
@@ -68,7 +68,7 @@ class MainActivity : AppCompatActivity() {
         val set1: LineDataSet
         set1 = LineDataSet(yVals, "DataSet 1")
 
-        set1.color = Color.BLUE
+        set1.color = Color.BLUE //melakukan setting terhadap chart yang ditampilkan
         set1.setCircleColor(Color.BLUE)
         set1.lineWidth = 1f
         set1.circleRadius = 3f
